@@ -38,6 +38,8 @@ public:
 
 const int k_maxNum = 512;
 
+
+
 class InventorySystem
 {
 private:
@@ -57,6 +59,8 @@ public:
    string getStoreName();
    int getStoreID();
    int getItemCount();
+
+   T_ProductCondition conditionChecker(char condition);
 
    void buildInventory();
    void showInventory();
@@ -78,11 +82,11 @@ private:
 
 public:
    Product();
-   Product(string name, int quantity, double price, char condition);
+   Product(string name, int quantity, double price, T_ProductCondition condition);
    ~Product();
 
    int generateProductID();
-   T_ProductCondition conditionChecker(char condition);
+
 
    void setProductID(int ID);
    void setPrice(double price);
@@ -112,7 +116,9 @@ int main()
 {
    cout << "Hello World" << endl;
 
-   
+   InventorySystem *x = new InventorySystem("BestBuy", 123);
+   x->buildInventory();
+   x->showInventory();
 
 }
 
@@ -128,6 +134,7 @@ InventorySystem::InventorySystem():storeName(0), storeID(0), itemList{NULL}, ite
 InventorySystem::InventorySystem(string storeName, int storeID )
 {
    srand(time(NULL));
+   itemCount = 0;
 }
 
 InventorySystem::~InventorySystem()
@@ -142,12 +149,12 @@ void InventorySystem::buildInventory()
 {
    string buffer;
    ifstream fin("input.txt");
-   Product x = Product();
 
    string productName;
-   int productQuantity;
+   int productQuanlity;
    double productPrice;
-   char productQuanlity;
+   char temp;
+   T_ProductCondition productQuantity;
 
    if (!fin)
    {
@@ -156,33 +163,65 @@ void InventorySystem::buildInventory()
         exit(-1);
    }
 
+   int i = 0;
 
    while(getline(fin, buffer, ';'))
    {
       productName = buffer;
-      int i = 0;
+
 
       getline(fin, buffer, ';');
-      productQuantity = stoi(buffer);
+      productQuanlity = stoi(buffer);
 
       getline(fin, buffer, ';');
       productPrice = stof(buffer);
 
       getline(fin, buffer, ';');
-      productQuanlity = buffer.at(0);
+      temp = buffer.at(0);
+      productQuantity = conditionChecker(temp);
+
+
 
       itemList[i] = new Product(productName, productQuanlity, productPrice, productQuantity);
       i++;
       itemCount++;
    }
-
-
 }
+
+
+T_ProductCondition InventorySystem::conditionChecker(char condition)
+{
+   T_ProductCondition productCondition;
+   switch (condition) {
+      case 'N':
+         productCondition = pcNew;
+         break;
+      case 'R':
+         productCondition = pcRefurbished;
+         break;
+      case 'U':
+         productCondition = pcUsed;
+         break;
+      case 'D':
+         productCondition = pcDefective;
+         break;
+      default:
+         break;
+   }
+   return productCondition;
+}
+
 
 
 void InventorySystem::showInventory()
 {
+   InventoryItem *p_Item;
 
+   for(int i = 0; i < itemCount; i++)
+   {
+      p_Item = itemList[i];
+      p_Item->display();
+   }
 }
 
 
@@ -237,7 +276,7 @@ int InventorySystem::getItemCount()
 
 //------------------class InventoryItem definition-------------
 
-InventoryItem::InventoryItem():name(NULL),quantity(0){}
+InventoryItem::InventoryItem():name(""),quantity(0){}
 InventoryItem::InventoryItem(string name, int quantity):name(name), quantity(quantity){}
 InventoryItem::~InventoryItem()
 {
@@ -277,18 +316,17 @@ void InventoryItem::display()const
 
 Product::Product():InventoryItem(), productID(0), price(0.0), condition(pcNew){}
 
-Product::Product(string name, int quantity, double price, char condition)
-:InventoryItem(name, quantity), price(price)
+Product::Product(string name, int quantity, double price, T_ProductCondition condition)
+:InventoryItem(name, quantity), price(price), condition(condition)
 {
    productID = generateProductID();
-   condition = conditionChecker(condition);
 
 }
 
 
 Product::~Product()
 {
-   cout << "Product: " << productID << " Price: " << price << " Condition: "
+   cout << "ProductID: " << productID << " Price: " << price << " Condition: "
    << condition << " destroyed" << endl;
 }
 
@@ -303,26 +341,7 @@ int Product::generateProductID()
 }
 
 
-T_ProductCondition Product::conditionChecker(char condition)
-{
-   T_ProductCondition productCondition;
-   switch (condition) {
-      case 'N':
-         productCondition = pcNew;
-         break;
-      case 'R':
-         productCondition = pcRefurbished;
-         break;
-      case 'U':
-         productCondition = pcUsed;
-         break;
-      case 'D':
-         productCondition = pcDefective;
-         break;
-      default:
-         break;
-   }
-}
+
 
 void Product::setProductID(int ID)
 {
