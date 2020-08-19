@@ -51,9 +51,9 @@ public:
    InventorySystem(string storeName, int storeID);
    ~InventorySystem();
 
-   void setStoreName();
-   void setStoreID();
-   void setItemCount();
+   void setStoreName(string name);
+   void setStoreID(int ID);
+   void setItemCount(int count);
    string getStoreName();
    int getStoreID();
    int getItemCount();
@@ -78,12 +78,15 @@ private:
 
 public:
    Product();
-   Product(int randomProducID, double price, T_ProductCondition condition);
+   Product(string name, int quantity, double price, char condition);
    ~Product();
 
-   void setProductID();
-   void setPrice();
-   void setCondition();
+   int generateProductID();
+   T_ProductCondition conditionChecker(char condition);
+
+   void setProductID(int ID);
+   void setPrice(double price);
+   void setCondition(T_ProductCondition condition);
 
    int getProductID();
    double getPrice();
@@ -137,15 +140,42 @@ InventorySystem::~InventorySystem()
 
 void InventorySystem::buildInventory()
 {
+   string buffer;
    ifstream fin("input.txt");
+   Product x = Product();
 
-   if (!fin) {
+   string productName;
+   int productQuantity;
+   double productPrice;
+   char productQuanlity;
 
+   if (!fin)
+   {
         cout << "ERROR: Failed to open input file\n";
 
         exit(-1);
-
    }
+
+
+   while(getline(fin, buffer, ';'))
+   {
+      productName = buffer;
+      int i = 0;
+
+      getline(fin, buffer, ';');
+      productQuantity = stoi(buffer);
+
+      getline(fin, buffer, ';');
+      productPrice = stof(buffer);
+
+      getline(fin, buffer, ';');
+      productQuanlity = buffer.at(0);
+
+      itemList[i] = new Product(productName, productQuanlity, productPrice, productQuantity);
+      i++;
+      itemCount++;
+   }
+
 
 }
 
@@ -168,21 +198,21 @@ void InventorySystem::terminate()
 }
 
 
-void InventorySystem::setStoreName()
+void InventorySystem::setStoreName(string name)
 {
-
+   this->storeName = name;
 }
 
 
-void InventorySystem::setStoreID()
+void InventorySystem::setStoreID(int ID)
 {
-
+   this->storeID = ID;
 }
 
 
-void InventorySystem::setItemCount()
+void InventorySystem::setItemCount(int count)
 {
-
+   this->itemCount = count;
 }
 
 
@@ -237,9 +267,99 @@ int InventoryItem::getQuantity()const
 
 void InventoryItem::display()const
 {
-   cout << "Item Name: " << name << endl;
-   cout << "Item Quantity: " << quantity << endl;
+   cout << "Product Name: " << name << endl;
+   cout << "Product Quantity: " << quantity << endl;
 }
 
 
 
+//----------------Product Definition------------------
+
+Product::Product():InventoryItem(), productID(0), price(0.0), condition(pcNew){}
+
+Product::Product(string name, int quantity, double price, char condition)
+:InventoryItem(name, quantity), price(price)
+{
+   productID = generateProductID();
+   condition = conditionChecker(condition);
+
+}
+
+
+Product::~Product()
+{
+   cout << "Product: " << productID << " Price: " << price << " Condition: "
+   << condition << " destroyed" << endl;
+}
+
+int Product::generateProductID()
+{
+   int id = 0;
+   id = rand() % 10000;
+
+   productID = id;
+
+   return id;
+}
+
+
+T_ProductCondition Product::conditionChecker(char condition)
+{
+   T_ProductCondition productCondition;
+   switch (condition) {
+      case 'N':
+         productCondition = pcNew;
+         break;
+      case 'R':
+         productCondition = pcRefurbished;
+         break;
+      case 'U':
+         productCondition = pcUsed;
+         break;
+      case 'D':
+         productCondition = pcDefective;
+         break;
+      default:
+         break;
+   }
+}
+
+void Product::setProductID(int ID)
+{
+   this->productID = ID;
+}
+
+void Product::setPrice(double price)
+{
+   this->price = price;
+}
+
+void Product::setCondition(T_ProductCondition condition)
+{
+   this->condition = condition;
+}
+
+int Product::getProductID()
+{
+   return productID;
+}
+
+double Product::getPrice()
+{
+   return price;
+}
+
+T_ProductCondition Product::getCondition()
+{
+   return condition;
+}
+
+void Product::Display()
+{
+   InventoryItem::display();
+
+   cout << "Product ID: " << productID << endl;
+   cout << "Product Price: " << price << endl;
+   cout << "Product Condition " << condition << endl;
+
+}
