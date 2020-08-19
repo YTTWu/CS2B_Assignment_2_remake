@@ -25,7 +25,7 @@ protected:
 public:
    InventoryItem();
    InventoryItem(string name, int quantity);
-   ~InventoryItem();
+   virtual ~InventoryItem();
 
    void setName(string name);
    void setQuantity(int quantity);
@@ -112,14 +112,14 @@ public:
 
 int main()
 {
-   cout << "Hello World" << endl;
+   InventorySystem* p_system;
+   p_system = new InventorySystem("Valley Fair", 95050);
+   p_system->buildInventory();
+   p_system->showInventory();
+   p_system->showDefectInventory();
+   p_system->terminate();
+   delete p_system;
 
-   InventorySystem *x = new InventorySystem("BestBuy", 123);
-   x->buildInventory();
-   x->showInventory();
-   cout << endl << endl << endl;
-   x->showDefectInventory();
-   x->terminate();
 
 }
 
@@ -322,7 +322,7 @@ InventoryItem::InventoryItem():name(""),quantity(0){}
 InventoryItem::InventoryItem(string name, int quantity):name(name), quantity(quantity){}
 InventoryItem::~InventoryItem()
 {
-   cout << "IventoryItem " << name << " with " << quantity << " items destroyed" << endl;
+   cout << "IventoryItem " << name << " with " << quantity << " items destroyed" << endl << endl;
 }
 
 
@@ -369,7 +369,7 @@ Product::Product(string name, int quantity, double price, T_ProductCondition con
 Product::~Product()
 {
    cout << "ProductID: " << productID << " Price: " << price << " Condition: "
-   << condition << " destroyed" << endl << endl;
+   << conditionSwitcher(condition) << endl;
 }
 
 int Product::generateProductID()

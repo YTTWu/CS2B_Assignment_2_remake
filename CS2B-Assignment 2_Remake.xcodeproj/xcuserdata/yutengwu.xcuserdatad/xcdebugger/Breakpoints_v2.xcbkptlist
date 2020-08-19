@@ -3,4 +3,164 @@
    uuid = "88297450-3A6F-4DBE-B2D1-4C11E0001885"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "396AE33A-623E-4ECE-BFF1-650E8EF99536"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CS2B-Assignment 2_Remake/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "Product::~Product()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "396AE33A-623E-4ECE-BFF1-650E8EF99536 - 3f247582e795284"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Product::~Product()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "370"
+                  endingLineNumber = "370"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "396AE33A-623E-4ECE-BFF1-650E8EF99536 - 3f247582e795284"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Product::~Product()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "370"
+                  endingLineNumber = "370"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "396AE33A-623E-4ECE-BFF1-650E8EF99536 - 3f247582e795284"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Product::~Product()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "370"
+                  endingLineNumber = "370"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A947808C-E998-4BB1-A0AD-5D6034E020AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CS2B-Assignment 2_Remake/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "InventoryItem::~InventoryItem()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA29EC65-5F19-41BA-BE0C-DCD331862AB1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CS2B-Assignment 2_Remake/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "InventoryItem::~InventoryItem()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AA29EC65-5F19-41BA-BE0C-DCD331862AB1 - 8c3e0af97fde4d80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InventoryItem::~InventoryItem()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "324"
+                  endingLineNumber = "324"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "AA29EC65-5F19-41BA-BE0C-DCD331862AB1 - 8c3e0af97fde4d80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InventoryItem::~InventoryItem()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "324"
+                  endingLineNumber = "324"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "AA29EC65-5F19-41BA-BE0C-DCD331862AB1 - 8c3e0af97fde4d80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InventoryItem::~InventoryItem()"
+                  moduleName = "CS2B-Assignment 2_Remake"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yutengwu/Documents/xcode%20workspace/Yuteng&apos;s%20practice/CS2B-Assignment%202_Remake/CS2B-Assignment%202_Remake/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "324"
+                  endingLineNumber = "324"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6905589-6A82-4D32-A5B3-94CF34DBAEAE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CS2B-Assignment 2_Remake/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
