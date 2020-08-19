@@ -96,11 +96,9 @@ public:
    double getPrice();
    T_ProductCondition getCondition();
 
-   void Display();
+   void display();
 
-
-
-
+   static char conditionSwitcher(T_ProductCondition condition);
 
 
 };
@@ -119,6 +117,9 @@ int main()
    InventorySystem *x = new InventorySystem("BestBuy", 123);
    x->buildInventory();
    x->showInventory();
+   cout << endl << endl << endl;
+   x->showDefectInventory();
+   x->terminate();
 
 }
 
@@ -151,38 +152,42 @@ void InventorySystem::buildInventory()
    ifstream fin("input.txt");
 
    string productName;
-   int productQuanlity;
+   int productQuantity;
    double productPrice;
    char temp;
-   T_ProductCondition productQuantity;
+   T_ProductCondition productCondition;
 
    if (!fin)
    {
-        cout << "ERROR: Failed to open input file\n";
+      cout << "ERROR: Failed to open input file\n";
 
-        exit(-1);
+      exit(-1);
    }
 
    int i = 0;
 
    while(getline(fin, buffer, ';'))
    {
+
+      // remove \n
+      buffer.erase(remove(buffer.begin(), buffer.end(), '\n'), buffer.end());
+
       productName = buffer;
 
 
       getline(fin, buffer, ';');
-      productQuanlity = stoi(buffer);
+      productQuantity = stoi(buffer);
 
       getline(fin, buffer, ';');
       productPrice = stof(buffer);
 
       getline(fin, buffer, ';');
       temp = buffer.at(0);
-      productQuantity = conditionChecker(temp);
+      productCondition = conditionChecker(temp);
 
 
 
-      itemList[i] = new Product(productName, productQuanlity, productPrice, productQuantity);
+      itemList[i] = new Product(productName, productQuantity, productPrice, productCondition);
       i++;
       itemCount++;
    }
@@ -220,19 +225,56 @@ void InventorySystem::showInventory()
    for(int i = 0; i < itemCount; i++)
    {
       p_Item = itemList[i];
-      p_Item->display();
+
+      Product *p_Product = static_cast<Product*>(p_Item);
+      p_Product->display();
    }
 }
 
 
 void InventorySystem::showDefectInventory()
 {
+   InventoryItem *p_Item;
 
+   for(int i = 0; i < itemCount; i++)
+   {
+      p_Item = itemList[i];
+
+      Product *p_Product = static_cast<Product*>(p_Item);
+
+      if(p_Product->getCondition() == pcDefective)
+      {
+         p_Product->display();
+      }
+
+   }
 }
 
 
 void InventorySystem::terminate()
 {
+   ofstream fout("output.txt");
+
+
+   if (!fout)
+   {
+      cout << "ERROR: Failed to open output file.\n";
+
+      exit (-2);
+   }
+
+   Product* p_product = NULL;
+
+
+
+   for (int i = 0; i < itemCount; i++)
+   {
+      p_product = static_cast<Product*>(itemList[i]);
+
+      fout << p_product->getName() << ";" << p_product->getQuantity();
+      fout << ";" << p_product->getPrice() << ";";
+      fout << Product::conditionSwitcher(p_product->getCondition()) << ";" << endl;
+   }
 
 }
 
@@ -327,7 +369,7 @@ Product::Product(string name, int quantity, double price, T_ProductCondition con
 Product::~Product()
 {
    cout << "ProductID: " << productID << " Price: " << price << " Condition: "
-   << condition << " destroyed" << endl;
+   << condition << " destroyed" << endl << endl;
 }
 
 int Product::generateProductID()
@@ -373,12 +415,31 @@ T_ProductCondition Product::getCondition()
    return condition;
 }
 
-void Product::Display()
+void Product::display()
 {
    InventoryItem::display();
 
    cout << "Product ID: " << productID << endl;
    cout << "Product Price: " << price << endl;
-   cout << "Product Condition " << condition << endl;
+   cout << "Product Condition: " << conditionSwitcher(condition) << endl << endl;
 
+}
+
+
+
+char Product::conditionSwitcher(T_ProductCondition condition)
+{
+   switch (condition) {
+      case pcNew:
+         return 'N';
+         break;
+      case pcUsed:
+         return 'U';
+      case pcRefurbished:
+         return 'R';
+      case pcDefective:
+         return 'D';
+      default:
+         break;
+   }
 }
