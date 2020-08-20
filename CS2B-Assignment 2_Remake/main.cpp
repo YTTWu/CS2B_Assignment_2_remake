@@ -25,7 +25,7 @@ protected:
 public:
    InventoryItem();
    InventoryItem(string name, int quantity);
-   virtual ~InventoryItem();
+   ~InventoryItem();
 
    void setName(string name);
    void setQuantity(int quantity);
@@ -142,7 +142,9 @@ InventorySystem::~InventorySystem()
 {
    for(int i = 0; i < itemCount; i++)
    {
-      delete itemList[i];
+      Product *p_product;
+      p_product = static_cast<Product*>(itemList[i]);
+      delete p_product;
    }
 }
 
